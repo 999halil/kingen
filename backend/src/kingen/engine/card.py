@@ -1,5 +1,5 @@
 from enum import Enum
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 class Suit(str, Enum):
     HEARTS = "H"
@@ -27,8 +27,7 @@ class Card(BaseModel):
     suit: Suit
     rank: Rank
 
-    class Config: 
-        frozen = True #maakt kaarten immutable
+    model_config = ConfigDict(frozen=True)
 
     def __str__(self) -> str:
 
